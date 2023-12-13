@@ -9,8 +9,8 @@ import OutCall from '../../assets/svgicons/outgoing-call.svg'
 import Missed from '../../assets/svgicons/missed-call.svg'
 import Tick from '../../assets/svgicons/double-tick.svg'
 
-const ChatBox = ({ source, text, name, time, unread, nameStyle, textStyle, id, onPress, imageStyle, mainStyle, call, callType, active }) => {
-    const flag = id === "11" || name === "Fullsnack Designers" ? false : true
+const ChatBox = ({ source, text, name, time, unread, nameStyle, textStyle, id, onPress, imageStyle, mainStyle, call, callType, active, touch }) => {
+    const flag = id === "11" || name === "Fullsnack Designers" || touch === "enable" ? false : true
     return (
         <TouchableOpacity
             style={{

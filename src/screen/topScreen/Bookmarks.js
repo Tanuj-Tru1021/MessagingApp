@@ -1,18 +1,18 @@
 import React from 'react'
-import { View, Text, FlatList, TouchableOpacity, ScrollView } from 'react-native'
-import Members from '../../components/Members'
+import { View, Text, FlatList, TouchableOpacity, ScrollView, Image } from 'react-native'
 import Ionicon from 'react-native-vector-icons/Ionicons'
 import { bookmarkstext, data3 } from '../../Objects'
 import Add from '../../../assets/svgicons/add-people.svg'
+import Online from '../../../assets/svgicons/online.svg'
 
-const Details = () => {
+const Bookmarks = () => {
     return (
         <ScrollView
             showsVerticalScrollIndicator={false}
             style={{
                 flex: 1, backgroundColor: '#F4F4F4'
             }}>
-            <View style={{backgroundColor:'F7F7F7', marginHorizontal: 16, borderRadius: 8}}>
+            <View style={{ backgroundColor: 'F7F7F7', marginHorizontal: 16, borderRadius: 8 }}>
                 <FlatList
                     data={bookmarkstext}
                     keyExtractor={item => item.id}
@@ -79,7 +79,8 @@ const Details = () => {
             </View>
             <View
                 style={{
-                    marginHorizontal: 16, paddingTop: 12, backgroundColor: 'white', borderRadius: 8
+                    marginHorizontal: 16, paddingTop: 12, backgroundColor: 'white', borderRadius: 8,
+                    borderWidth: 2, borderColor: '#EDEDED'
                 }}>
                 <View
                     style={{
@@ -132,4 +133,49 @@ const Details = () => {
     )
 }
 
-export default Details
+export default Bookmarks
+
+
+const Members = ({ text, detail, image }) => {
+    return (
+        <View
+            style={{
+                flexDirection: 'row', justifyContent:'space-between', paddingHorizontal: 16, flex: 1, marginBottom: 24
+            }}>
+            <View style={{ flexDirection: 'row', justifyContent:'center', alignItems:'center' }}>
+                <View style={{ position: 'relative' }}>
+                    <Image
+                        source={image}
+                    />
+                    <Online
+                        height={12}
+                        width={12}
+                        style={{
+                            position: 'absolute', bottom: 0, right: 0
+                        }} />
+                </View>
+                <Text
+                    style={{
+                        fontSize: 14, fontWeight: 500,
+                        color: '#1B1A57', paddingLeft: 16
+                    }}>
+                    {text}
+                </Text>
+            </View>
+            <View
+                style={{
+                    height: 24, backgroundColor: detail !== "Admin" ? "white" : "#2F80ED",
+                    paddingVertical: 4, paddingHorizontal: 8,
+                    borderRadius: 8
+                }}>
+                <Text
+                    style={{
+                        fontSize: 12, fontWeight: 500,
+                        color: detail !== "Admin" ? "#4F5E7B" : "white"
+                    }}>
+                    {detail}
+                </Text>
+            </View>
+        </View>
+    )
+}

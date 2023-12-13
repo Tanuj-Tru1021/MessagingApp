@@ -1,13 +1,22 @@
 import React, { useRef, useEffect, useState } from 'react'
-import { View, Text, Image, TextInput, TouchableOpacity, ScrollView } from 'react-native'
-import ChatBox from '../components/ChatBox'
-import BottomSheet2 from '../components/ChannelsBottomSheet';
+import { View, Text, Image, TextInput, TouchableOpacity, ScrollView, FlatList } from 'react-native'
 import Ionicon from 'react-native-vector-icons/Ionicons'
 import { Modalize } from 'react-native-modalize';
 import Online from '../../assets/svgicons/online.svg'
+import { texts } from '../Objects';
+import Ronald from '../../assets/ronald.png'
+import Bali1 from '../../assets/bali1.png'
+import Bali2 from '../../assets/bali2.png'
+import Bali3 from '../../assets/bali3.png'
+import Mike from '../../assets/mike.png'
+import Adina from '../../assets/adina2.png'
+import Typing1 from '../../assets/typing1.png'
+import Typing2 from '../../assets/typing2.png'
+import Typing3 from '../../assets/typing3.png'
+import Emoji from '../../assets/emoji.png'
 
 
-const Fullsnack = ({ navigation }) => {
+const GroupChat = ({ navigation }) => {
   const [val, setVal] = useState("")
   let name1 = 'mic'
   useEffect(() => {
@@ -20,19 +29,19 @@ const Fullsnack = ({ navigation }) => {
       tabBarStyle: undefined
     });
   }, [navigation]);
-  const modalizeRef = useRef();
+  const ChannelsBottomSheetRef = useRef();
   const onOpen = () => {
-    modalizeRef?.current?.open();
+    ChannelsBottomSheetRef?.current?.open();
   };
   return (
     <>
       <View
         style={{
-          flexDirection: 'row', borderBottomWidth: 2, borderBottomColor: '#EDEDED', paddingBottom: 13, paddingHorizontal: 8
+          flexDirection: 'row', borderBottomWidth: 2, borderBottomColor: '#EDEDED', paddingBottom: 13, paddingHorizontal: 8, backgroundColor:'#F6F6F6'
         }}>
         <TouchableOpacity
           style={{ paddingTop: 28 }}
-          onPress={() => navigation.navigate('MainChats')}
+          onPress={() => navigation.navigate('AllChats')}
         >
           <Ionicon
             name='arrow-back'
@@ -40,34 +49,40 @@ const Fullsnack = ({ navigation }) => {
             color={'grey'}
           />
         </TouchableOpacity>
-        <ChatBox
-          mainStyle={{ width: '65%' }}
-          source={require("../../assets/ronald.png")}
-          imageStyle={{ paddingLeft: 12, marginTop: 5 }}
-          name={"Fullsnack Designers"}
-          text={"7 Online, from 12 peoples"}
-          nameStyle={{ paddingTop: 17, top: 0, fontSize: 18 }}
-          textStyle={{ bottom: 4 }}
-          unread={"0"}
-          onPress={() => navigation.navigate('FullsnackDetails')}
-          callType={'0'}
-        />
-        <Ionicon
-          name='videocam'
-          size={24}
-          color={'grey'}
-          style={{
-            paddingTop: 28, marginRight: 18, marginLeft: 60
-          }} />
-        <Ionicon
-          name='ellipsis-vertical'
-          size={24}
-          color={'grey'}
-          style={{ paddingTop: 28 }}
-        />
+        <View style={{ flex: 1, flexDirection: 'row', marginLeft: 12, justifyContent: 'space-between' }}>
+          <View style={{ flexDirection: 'row', paddingTop: 14 }}>
+            <Image
+              source={Ronald}
+              style={{ marginRight: 10 }}
+            />
+            <TouchableOpacity onPress={() => navigation.navigate('GroupChatDetails')}>
+              <Text style={{ fontSize: 18, fontWeight: 500, color: '#1B1A57' }}>
+                Fullsnack Designers
+              </Text>
+              <Text style={{ fontSize: 12, fontWeight: 400, color: '#4F5E7B', paddingTop: 2 }}>
+                7 Online, from 12 peoples
+              </Text>
+            </TouchableOpacity>
+          </View>
+          <View style={{ flexDirection: 'row' }}>
+            <Ionicon
+              name='videocam'
+              size={24}
+              color={'grey'}
+              style={{
+                paddingTop: 28, marginRight: 18
+              }} />
+            <Ionicon
+              name='ellipsis-vertical'
+              size={24}
+              color={'grey'}
+              style={{ paddingTop: 28 }}
+            />
+          </View>
+        </View>
       </View>
 
-      <ScrollView contentContainerStyle={{ flexGrow: 1, backgroundColor: '#F4F4F4' }}>
+      <ScrollView contentContainerStyle={{ flexGrow: 1, backgroundColor: '#F6F6F6' }}>
         <View
           style={{
             flexDirection: 'column', backgroundColor: "#F7F7F7",
@@ -118,7 +133,7 @@ const Fullsnack = ({ navigation }) => {
             marginRight: 107, position: 'relative'
           }}>
           <Image
-            source={require("../../assets/bali1.png")}
+            source={Bali1}
             style={{ height: 100 }}
           />
         </View>
@@ -128,7 +143,7 @@ const Fullsnack = ({ navigation }) => {
           }}>
           <View>
             <Image
-              source={require("../../assets/mike.png")}
+              source={Mike}
               style={{ marginRight: 8, marginTop: 64 }}
             />
             <Online
@@ -140,18 +155,18 @@ const Fullsnack = ({ navigation }) => {
             />
           </View>
           <Image
-            source={require("../../assets/bali2.png")}
+            source={Bali2}
             style={{ marginRight: 4 }}
           />
           <Image
-            source={require("../../assets/bali3.png")}
+            source={Bali3}
           />
         </View>
         <View
           style={{ flexDirection: 'row-reverse', marginTop: 16 }}
         >
           <Image
-            source={require('../../assets/adina2.png')}
+            source={Adina}
             style={{ marginRight: 16, marginTop: 46 }}
           />
           <Online
@@ -196,14 +211,14 @@ const Fullsnack = ({ navigation }) => {
             style={{ paddingRight: 10 }}
           />
           <Image
-            source={require("../../assets/typing1.png")}
+            source={Typing1}
           />
           <Image
-            source={require("../../assets/typing2.png")}
+            source={Typing2}
             style={{ left: -7 }}
           />
           <Image
-            source={require("../../assets/typing3.png")}
+            source={Typing3}
             style={{ left: -14 }}
           />
           <Text
@@ -217,17 +232,18 @@ const Fullsnack = ({ navigation }) => {
       </ScrollView>
 
       <Modalize
-        ref={modalizeRef}
-        snapPoint={250}
-        closeSnapPointStraightEnabled={false}
-        scrollViewProps={{ showsVerticalScrollIndicator: false }} >
-        <BottomSheet2 />
+        ref={ChannelsBottomSheetRef}
+        handlePosition={'inside'}
+        adjustToContentHeight={true}
+        scrollViewProps={{ showsVerticalScrollIndicator: false }}
+        rootStyle={{ borderRadius: 16 }}>
+        <ChannelsBottomSheet />
       </Modalize>
       <TouchableOpacity onPress={onOpen}>
         <View
           style={{
             flexDirection: 'row', paddingVertical: 12,
-            paddingHorizontal: 16, borderBottomWidth: 1, borderBottomColor: '#EDEDED', backgroundColor: '#FFFFFF'
+            paddingHorizontal: 16, borderBottomWidth: 1, borderBottomColor: '#EDEDED', backgroundColor: '#FFFFFF', borderTopLeftRadius: 8, borderTopRightRadius: 8
           }}>
           <View style={{ flexDirection: 'row', justifyContent: 'space-between', flex: 1 }}>
             <Text
@@ -255,7 +271,7 @@ const Fullsnack = ({ navigation }) => {
       <View style={{ flexDirection: 'row', justifyContent: 'space-between', paddingHorizontal: 16, backgroundColor: '#FFFFFF' }}>
         <View style={{ flexDirection: 'row', justifyContent: 'center', alignItems: 'center' }}>
           <Image
-            source={require('../../assets/emoji.png')}
+            source={Emoji}
           />
           <TextInput
             style={{
@@ -296,4 +312,38 @@ const Fullsnack = ({ navigation }) => {
   )
 }
 
-export default Fullsnack
+export default GroupChat
+
+const ChannelsBottomSheet = () => {
+  return (
+      <View>
+          <Text
+              style={{
+                  paddingHorizontal: 16, paddingVertical: 12,
+                  fontSize: 14, fontWeight: 500, color: '#1B1A57'
+              }}>
+              Channels
+          </Text>
+          <FlatList
+              data={texts}
+              keyExtractor={item => item.id}
+              renderItem={({ item }) => {
+                  return (
+                      <View
+                          style={{
+                              backgroundColor: item.id !== "1" ? 'white' : '#E1E9FD'
+                          }}>
+                          <Text
+                              style={{
+                                  paddingHorizontal: 16, paddingVertical: 16,
+                                  fontSize: 12, fontWeight: 500, color: item.id !== "1" ? '#4F5E7B' : '#2F80ED'
+                              }}>
+                              {item.text}
+                          </Text>
+                      </View>
+                  )
+              }}
+          />
+      </View>
+  )
+}

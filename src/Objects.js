@@ -91,7 +91,8 @@ export const data2 = [
       type: "audio",
       call: "incoming",
       iconName: "arrow-down-circle",
-      active: "A"
+      active: "A",
+      touch: "enable"
     },
     {
       image: require('../assets/lee.png'),
@@ -102,7 +103,8 @@ export const data2 = [
       type: "audio",
       call: "outgoing",
       iconName: "arrow-up-circle",
-      active: "On"
+      active: "On",
+      touch: "enable"
     },
     {
       image: require('../assets/dwight.png'),
@@ -113,7 +115,8 @@ export const data2 = [
       type: "video",
       call: "incoming",
       iconName: "arrow-down-circle",
-      active: "On"
+      active: "On",
+      touch: "enable"
     },
     {
       image: require('../assets/albert.png'),
@@ -124,7 +127,8 @@ export const data2 = [
       type: "video",
       call: "missed",
       iconName: "arrow-down-circle",
-      active: "Off"
+      active: "Off",
+      touch: "enable"
     }
   ]
 

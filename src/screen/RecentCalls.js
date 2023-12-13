@@ -10,6 +10,7 @@ import InCall from '../../assets/svgicons/incoming-call.svg'
 import OutMissed from '../../assets/svgicons/missed-outgoing.svg'
 import Missed from '../../assets/svgicons/missed-call.svg'
 import { callHistory } from '../Objects'
+import Darlene from '../../assets/darlene.png'
 
 
 const RecentCalls = () => {
@@ -17,7 +18,7 @@ const RecentCalls = () => {
   return (
     <View
       style={{
-        flex: 1, backgroundColor: '#F4F4F4', paddingHorizontal: 16
+        flex: 1, backgroundColor: '#F6F6F6', paddingHorizontal: 16
       }}>
       <Heading
         title={"Recent Calls"}
@@ -43,6 +44,7 @@ const RecentCalls = () => {
               call={item.call}
               callType={item.type}
               active={item.active}
+              touch={item.touch}
             />
           )
         }}
@@ -79,7 +81,7 @@ const RecentCalls = () => {
               <View style={{ flexDirection: 'row' }}>
                 <View style={{ position: 'relative' }}>
                   <Image
-                    source={require('../../assets/darlene.png')}
+                    source={Darlene}
                     style={{ marginRight: 16 }}
                   />
                   <Away

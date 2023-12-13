@@ -1,7 +1,8 @@
 import React, { useState } from 'react'
 import { View, Image, Text, TouchableOpacity } from 'react-native'
 import Ionicon from 'react-native-vector-icons/Ionicons'
-import { Switch } from 'react-native-switch';
+import ToggleSwitch from 'toggle-switch-react-native'
+
 
 const HeadingDetails = ({ onPress }) => {
     const [val, setVal] = useState(true)
@@ -9,7 +10,8 @@ const HeadingDetails = ({ onPress }) => {
         setVal(!val)
     }
     return (
-        <View style={{backgroundColor: 'white'}}> 
+        <View style={{ backgroundColor: 'white' }}>
+
             <Image
                 source={require('../../assets/fruits.png')}
                 style={{ width: '100%', marginBottom: 20 }}
@@ -74,7 +76,13 @@ const HeadingDetails = ({ onPress }) => {
                         Notifications
                     </Text>
                 </View>
-                <Switch value={val} onValueChange={() => toggle()} disabled={false} circleSize={24} barHeight={18} backgroundActive={'#E1E9FD'} backgroundInactive={'lightgrey'} circleActiveColor={'#2F80ED'} circleInActiveColor={'grey'} containerStyle={{ top: 12 }} />
+                <ToggleSwitch
+                    isOn={val}
+                    onColor='#2F80ED'
+                    offColor='grey'
+                    size='small'
+                    onToggle={isOn => toggle()}
+                />
             </View>
         </View>
     )

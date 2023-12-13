@@ -6,7 +6,7 @@ const RecentChats = () => {
     <View
       style={{
         flex: 1, justifyContent: 'center',
-        backgroundColor: 'white', alignItems: 'center'
+        backgroundColor: '#F6F6F6', alignItems: 'center'
       }}>
       <Text
         style={{
